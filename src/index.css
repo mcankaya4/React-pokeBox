@@ -26,11 +26,14 @@ body {
   position: relative;
 }
 
+header {
+  padding: 60px;
+  background-color: rgba(204, 164, 59, 0.5);
+}
+
 .title {
   font-size: 84px;
   text-align: center;
-  padding: 60px;
-  background-color: rgba(204, 164, 59, 0.5);
 }
 
 .card-box {
@@ -214,17 +217,18 @@ body {
 .cart-open > .info > .stats {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
   font-size: 16px;
   color: #e5e5e5;
-  gap: 16px;
+  row-gap: 16px;
   font-weight: 500;
-  padding: 10px 0 0 10px;
+  padding: 8px 0 0 4px;
 }
 
 .cart-open > .info > .stats span {
   color: #cca43b;
   font-weight: 700;
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .cart-open > .type {
@@ -237,9 +241,90 @@ body {
   padding: 4px 0 10px;
 }
 
+.normal,
+.unknown {
+  background-color: #e5e5e5;
+  color: #242f40;
+}
+
+.fighting {
+  background-color: #603808;
+  color: #e5e5e5;
+}
+
+.flying {
+  background-color: #efcfe3;
+  color: #242f40;
+}
+
+.ground {
+  background-color: #3d405b;
+  color: #e5e5e5;
+}
+
+.rock {
+  background-color: #242423;
+  color: #e5e5e5;
+}
+
+.bug {
+  background-color: #8da9c4;
+  color: #242f40;
+}
+
+.ghost {
+  background-color: #eef4ed;
+  color: #242f40;
+}
+
+.steel {
+  background-color: #22333b;
+  color: #e5e5e5;
+}
+
+.fire {
+  background-color: #f94144;
+  color: #ffff3f;
+}
+
+.water {
+  background-color: #00a6fb;
+  color: #e5e5e5;
+}
+
 .grass {
   background-color: #90be6d;
   color: #242f40;
+}
+
+.psychic {
+  background-color: #7371fc;
+  color: #e5e5e5;
+}
+
+.ice {
+  background-color: #bfdbf7;
+  color: #242f40;
+}
+
+.dragon {
+  background-color: #f25c54;
+  color: #242f40;
+}
+
+.dark {
+  background-color: #0a0908;
+  color: #e5e5e5;
+}
+
+.fairy {
+  background-color: #87bba2;
+  color: #363636;
+}
+
+.stellar {
+  background-color: #fde4cf;
+  color: #363636;
 }
 
 .poison {
@@ -248,6 +333,42 @@ body {
 }
 
 .electric {
-  background-color: #ffd60a;
+  background-color: #ffff3f;
   color: #242f40;
+}
+
+/* HTML: <div class="loader"></div> */
+
+.loader-box {
+  display: flex;
+  justify-content: center;
+  margin-top: 170px;
+}
+
+.loader {
+  width: 50px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 8px solid #0000;
+  border-right-color: #363636;
+  position: relative;
+  animation: l24 1s infinite linear;
+}
+.loader:before,
+.loader:after {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: inherit;
+  animation: inherit;
+  animation-duration: 2s;
+}
+.loader:after {
+  animation-duration: 4s;
+}
+@keyframes l24 {
+  100% {
+    transform: rotate(1turn);
+  }
 }
