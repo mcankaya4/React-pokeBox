@@ -424,7 +424,7 @@ header img {
 .loader-box {
   display: flex;
   justify-content: center;
-  margin-top: 170px;
+  align-items: center;
   flex: 1;
 }
 
