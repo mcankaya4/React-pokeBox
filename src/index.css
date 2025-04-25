@@ -31,21 +31,26 @@ body {
 }
 
 header {
-  padding: 60px;
+  padding: 20px 0 0;
   background-color: rgba(204, 164, 59, 0.5);
   position: relative;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 42px;
 }
 
 header img {
-  width: 8%;
-  position: absolute;
-  top: 18px;
-  left: 350px;
+  width: 7%;
+  /*position: absolute;*/
+  /*top: 25px;*/
+  /*left: 450px;*/
   opacity: 0.8;
 }
 
 .title {
-  font-size: 84px;
+  font-size: 96px;
   text-align: center;
 }
 
@@ -161,7 +166,7 @@ header img {
   display: flex;
   width: 100%;
   justify-content: space-between;
-  padding: 0 24px;
+  padding: 0 128px;
 }
 
 .footer-title-properties {
