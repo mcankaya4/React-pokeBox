@@ -10,13 +10,15 @@ function App() {
   const [myPokes, setMyPokes] = useState([]);
   const [loading, setLoading] = useState(false);
   const [start, setStart] = useState(false);
-  const [numbers, regenerate] = useNumber(start);
+  const [index, numbers, regenerate] = useNumber(start);
 
   function handleSelected(poke) {
     if (myPokes.length > 5) return;
     setMyPokes((cur) => [...cur, poke]);
     regenerate();
     if (myPokes.length === 5) setStart(false);
+
+    console.log(index);
   }
 
   function handleToggle() {

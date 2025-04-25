@@ -38,5 +38,5 @@ export const useNumber = (start) => {
     });
   }, [allNumbers]);
 
-  return [currentGroup, regenerate];
+  return [currentIndex, currentGroup, regenerate];
 };
