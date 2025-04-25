@@ -2,7 +2,7 @@ function Header() {
   return (
     <header>
       <h1 className="title">
-        poke<span>Box</span>
+        Trainer’s <span>Choice</span>
       </h1>
     </header>
   );

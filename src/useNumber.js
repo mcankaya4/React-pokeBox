@@ -1,31 +1,42 @@
-import { useState, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
-const generateUniqueNumbers = (excludedNumbers) => {
+const generate18UniqueNumbers = () => {
   const set = new Set();
-  const excludedSet = new Set(excludedNumbers);
-
-  while (set.size < 3) {
-    const random = Math.floor(Math.random() * 100) + 1;
-    if (!excludedSet.has(random)) {
-      set.add(random);
-    }
+  while (set.size < 18) {
+    set.add(Math.floor(Math.random() * 100) + 1);
   }
   return Array.from(set);
 };
 
-export const useNumber = () => {
-  const [history, setHistory] = useState([]); // Tüm geçmiş sayılar burada
-  const [numbers, setNumbers] = useState(() => {
-    const initial = generateUniqueNumbers([]);
-    setHistory(initial); // ilk değerle geçmişi başlat
-    return initial;
-  });
+export const useNumber = (start) => {
+  const [allNumbers, setAllNumbers] = useState([]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentGroup, setCurrentGroup] = useState([]);
+  const prevStart = useRef(start);
+
+  // Sadece false ➝ true geçişinde tetiklen
+  useEffect(() => {
+    if (!prevStart.current && start) {
+      const generated = generate18UniqueNumbers();
+      setAllNumbers(generated);
+      setCurrentIndex(0);
+      setCurrentGroup(generated.slice(0, 3));
+    }
+    prevStart.current = start;
+  }, [start]);
 
   const regenerate = useCallback(() => {
-    const newNumbers = generateUniqueNumbers(history);
-    setNumbers(newNumbers);
-    setHistory((prev) => [...prev, ...newNumbers]); // geçmişe yeni 3 sayıyı ekle
-  }, [history]);
+    setCurrentIndex((prevIndex) => {
+      const nextIndex = prevIndex + 1;
+      const startIndex = nextIndex * 3;
+      const nextGroup = allNumbers.slice(startIndex, startIndex + 3);
+      if (nextGroup.length > 0) {
+        setCurrentGroup(nextGroup);
+        return nextIndex;
+      }
+      return prevIndex; // sona geldiyse artırma
+    });
+  }, [allNumbers]);
 
-  return [numbers, regenerate];
+  return [currentGroup, regenerate];
 };

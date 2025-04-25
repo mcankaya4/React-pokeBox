@@ -1,20 +1,31 @@
 import Header from "./component/Header";
 import Footer from "./component/Footer";
 import Main from "./component/Main";
+import Loader from "./component/Loader";
 import { useEffect, useState } from "react";
 import { useNumber } from "./useNumber";
-import Loader from "./component/Loader";
 
 function App() {
-  const [numbers, regenerate] = useNumber();
   const [pokes, setPokes] = useState([]);
   const [myPokes, setMyPokes] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [start, setStart] = useState(false);
+  const [numbers, regenerate] = useNumber(start);
 
   function handleSelected(poke) {
     if (myPokes.length > 5) return;
     setMyPokes((cur) => [...cur, poke]);
     regenerate();
+    if (myPokes.length === 5) setStart(false);
+  }
+
+  function handleToggle() {
+    setStart((cur) => !cur);
+  }
+
+  function handleAgain() {
+    setMyPokes([]);
+    setTimeout(() => setStart(true), 0);
   }
 
   useEffect(() => {
@@ -44,12 +55,16 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {loading ? (
-        <Loader />
-      ) : (
+      {loading && <Loader />}
+      {!loading && start && myPokes.length < 6 && (
         <Main pokes={pokes} onSelected={handleSelected} />
       )}
-      <Footer myPokes={myPokes} />
+      <Footer
+        myPokes={myPokes}
+        start={start}
+        onToggle={handleToggle}
+        onAgain={handleAgain}
+      />
     </div>
   );
 }
