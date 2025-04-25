@@ -33,6 +33,15 @@ body {
 header {
   padding: 60px;
   background-color: rgba(204, 164, 59, 0.5);
+  position: relative;
+}
+
+header img {
+  width: 8%;
+  position: absolute;
+  top: 18px;
+  left: 350px;
+  opacity: 0.8;
 }
 
 .title {
