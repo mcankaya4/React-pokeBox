@@ -14,7 +14,7 @@ export const useNumber = (start) => {
   const [currentGroup, setCurrentGroup] = useState([]);
   const prevStart = useRef(start);
 
-  // Sadece false ➝ true geçişinde tetiklen
+  // Todo: Sadece false ➝ true geçişinde tetiklen
   useEffect(() => {
     if (!prevStart.current && start) {
       const generated = generate18UniqueNumbers();
@@ -34,7 +34,7 @@ export const useNumber = (start) => {
         setCurrentGroup(nextGroup);
         return nextIndex;
       }
-      return prevIndex; // sona geldiyse artırma
+      return prevIndex;
     });
   }, [allNumbers]);
 
